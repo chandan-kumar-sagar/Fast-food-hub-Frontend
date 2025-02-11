@@ -1,50 +1,51 @@
-import React, { useState } from 'react';
-import data from '../Components/Data';
-import MenuItemCard from '../Components/MenuItemCard';
+import React, { useState } from "react";
+import data from "../Components/Data";
+import MenuItemCard from "../Components/MenuItemCard";
 
 const Menu = () => {
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
   };
 
-  const filteredData = selectedCategory === 'all'
-    ? data
-    : data.filter(item => item.category === selectedCategory);
+  const filteredData = data.filter(
+    (item) =>
+      selectedCategory === "all" || item.categories.includes(selectedCategory)
+  );
 
   return (
-    <div>
-      <h1 className="text-2xl font-semibold flex justify-center mt-[-4.75rem] ">Menu</h1>
-      <div className=" mt-4 flex justify-center ">
-        <button className={`mr-2 ${selectedCategory === 'all' ? 'text-blue-500' : ''}`}
-         onClick={() => handleCategoryChange('all')}>All</button>
-
-        <button className={`mr-2 ${selectedCategory === 'chicken' ? 'text-blue-500' : ''}`} 
-        onClick={() => handleCategoryChange('chicken')}>Chicken</button>
-
-        <button className={`mr-2 ${selectedCategory === 'salad' ? 'text-blue-500' : ''}`}
-        onClick={() => handleCategoryChange('salad')}>Salad</button>
-
-        <button className={`mr-2 ${selectedCategory === 'pasta' ? 'text-blue-500' : ''}`}
-         onClick={() => handleCategoryChange('pasta')}>Pasta</button>
-
-        <button className={` ${selectedCategory === 'rice' ? 'text-blue-500' : ''}`}
-        onClick={() => handleCategoryChange('rice')}>Rice</button>
-
+    <div className="p-6">
+      <h1 className="text-3xl font-bold text-center mb-6">Menu</h1>
+      <div className="flex justify-center space-x-4 mb-6">
+        {[
+          { label: "All Items", value: "all" },
+          { label: "Veg Items", value: "veg" },
+          { label: "Non-Veg Items", value: "nonveg" },
+          { label: "Biryani", value: "biryani" },
+        ].map(({ label, value }) => (
+          <button
+            key={value}
+            className={`px-5 py-2 rounded-lg font-semibold transition-all duration-300 ${
+              selectedCategory === value
+                ? "bg-blue-500 text-white"
+                : "bg-gray-200 hover:bg-gray-300"
+            }`}
+            onClick={() => handleCategoryChange(value)}
+          >
+            {label}
+          </button>
+        ))}
       </div>
-      <div className="grid  lg:grid-cols-3  gap-4 mt-4">
-        {filteredData.map(item => (
-          <div key={item.id} className='w-full'>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredData.map((item) => (
+          <div key={item.id} className="w-full">
             <MenuItemCard item={item} />
           </div>
         ))}
       </div>
     </div>
   );
-}
+};
 
 export default Menu;
-
-
-

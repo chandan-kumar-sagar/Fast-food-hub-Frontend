@@ -1,67 +1,76 @@
-import React from 'react'
-import home_bg from '../assets/home_bg.png';
-import { AiOutlineArrowRight } from 'react-icons/ai'
-import { BsBagCheckFill } from 'react-icons/bs'
-import { IoLocationSharp } from 'react-icons/io5'
-import { BiSolidTruck } from 'react-icons/bi'
+import React from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import home_bg from "../assets/home_bg.png";
+import { AiOutlineArrowRight } from "react-icons/ai";
+import { BsBagCheckFill } from "react-icons/bs";
+import { IoLocationSharp } from "react-icons/io5";
+import { BiSolidTruck } from "react-icons/bi";
 
 const Home = () => {
-  
-
+  const navigate = useNavigate(); // Hook for navigation
 
   return (
-    <div>
-      <div className='flex flex-col'>
-        <div className='flex flex-col ml-20 mt-[-2.75rem]'>
-          <p className='text-5xl font-bold'>Order Your Favourite</p>
-          <p className='text-5xl font-bold mt-2'>Food Easily</p>
-        </div>
+    <div className="flex flex-col items-center justify-center px-6 py-12">
+      {/* Hero Section */}
+      <div className="text-center lg:text-left">
+        <h1 className="text-5xl font-extrabold text-gray-900 leading-tight">
+          Order Your Favourite <br />{" "}
+          <span className="text-yellow-500">Food Easily</span>
+        </h1>
+        <p className="mt-4 text-lg text-gray-600">
+          We deliver 100% organic and fresh food. Order now and enjoy!
+        </p>
 
-        <div className='flex flex-col ml-20'>
-          <p className='text-md mt-[2rem]'>
-            We deliver 100% organic and fresh food. You can </p>
-          <p className='text-md mt-1'> order right away! </p>
-        </div>
-
-
-        <div>
-          <button className='flex flex-box py-[8px] px-[23px] rounded-[30px] border  
-        mt-6 ml-20 bg-yellow-400 shadow-sm hover:shadow-yellow-300'
+        {/* Navigate to Menu.js when button is clicked */}
+        <button
+          onClick={() => navigate("/menu")}
+          className="mt-6 px-6 py-3 bg-yellow-400 text-black font-semibold rounded-full flex items-center gap-2 shadow-lg hover:bg-yellow-500 transition-all"
         >
-            Our Menu
-            <AiOutlineArrowRight className='flex flex-box ml-3 mt-1' />
-          </button>
+          Explore Menu
+          <AiOutlineArrowRight className="text-lg" />
+        </button>
+      </div>
+
+      {/* Hero Image */}
+      <div className="mt-10 lg:mt-[-10rem]">
+        <img
+          src={home_bg}
+          alt="landing-page-img"
+          className="max-w-xs sm:max-w-md lg:max-w-lg"
+          loading="lazy"
+        />
+      </div>
+
+      {/* Features Section */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 w-full max-w-4xl">
+        <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all">
+          <BsBagCheckFill className="text-4xl text-red-500 mb-3" />
+          <h3 className="text-lg font-semibold text-gray-900">Easy Ordering</h3>
+          <p className="text-gray-600 text-sm text-center">
+            Select your favorite food and place an order effortlessly!
+          </p>
+        </div>
+
+        <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all">
+          <IoLocationSharp className="text-4xl text-blue-500 mb-3" />
+          <h3 className="text-lg font-semibold text-gray-900">
+            Choose Location
+          </h3>
+          <p className="text-gray-600 text-sm text-center">
+            Select your receiving location with ease and convenience.
+          </p>
+        </div>
+
+        <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all">
+          <BiSolidTruck className="text-4xl text-green-500 mb-3" />
+          <h3 className="text-lg font-semibold text-gray-900">Fast Delivery</h3>
+          <p className="text-gray-600 text-sm text-center">
+            Get your food delivered within 1-2 hours with our fast service.
+          </p>
         </div>
       </div>
-
-      <div className=''>
-        <img src={home_bg} alt='landing-page-img' height={500} width={450} loading='lazy'
-          className='float-right mt-[-20rem] mr-300'
-        ></img>
-      </div>
-      <div className='flex space-x-2 my-4 '>
-        <button className='py-[10px] px-[23px] rounded-[8px] border 
-        mt-6 ml-20 mr-3 text-justify inline-block align-middle shadow-md hover:shadow-red-200/75'>
-        <BsBagCheckFill className='flex flex-box'/>
-          Select your favourite food
-          and order!
-        </button>
-        <button className='py-[8px] px-[23px] rounded-[8px] border 
-        mt-6 ml-20 mx-2 text-justify inline-block align-middle shadow-md hover:shadow-red-200/75'>
-        <IoLocationSharp/>
-          Select your receiving place
-          place 
-        </button>
-        <button className='py-[8px] px-[23px] rounded-[8px] border  
-        mt-6 ml-20 mx-2 text-justify inline-block align-middle shadow-md hover:shadow-red-200/75'>
-        <BiSolidTruck/>
-          Get your food within
-          1-2 hours       
-        </button>
-      </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
