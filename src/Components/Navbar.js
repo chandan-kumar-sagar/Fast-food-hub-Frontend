@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/logo.png";
+// import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
@@ -8,15 +8,15 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
     <div className="w-full bg-white mb-2 shadow-md border-b border-gray-300">
       <div className="flex justify-between items-center w-11/12 max-w-[1160px] mt-7 mx-auto">
         {/* Logo */}
-        <Link to="/">
+        <a href="/">
           <img
-            src={logo}
+            src="https://t4.ftcdn.net/jpg/05/71/11/39/360_F_571113947_GvEmgSRhkfE7b1sS6WATzxSleheVgzOS.jpg"
             alt="logo-img"
             width={180}
             height={32}
             loading="lazy"
           />
-        </Link>
+        </a>
 
         {/* Navigation Links */}
         <nav>
